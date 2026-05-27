@@ -104,6 +104,12 @@ const DEFAULT_BOT_CODE = `def bot(**kwargs) -> str | list[str] | None:
     if is_outgoing:
         return None
 
+    # If you want to make use of persistant data between calls to this function, 
+    # you can put that data into the global _bot_globals dictionary, e.g.:
+    # bot_globals = globals()["_bot_globals"] 
+    # if not "known_sender_names" in bot_globals:
+    #     bot_globals["known_sender_names"] = set()
+
     # Example: Only respond in #bot channel to "!pling" command
     if channel_name == "#bot" and "!pling" in message_text.lower():
         return "[BOT] Plong!"
